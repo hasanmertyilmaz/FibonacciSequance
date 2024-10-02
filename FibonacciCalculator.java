@@ -1,30 +1,44 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class FibonacciCalculator {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the number of terms: ");
-        int terms = scanner.nextInt();
+        int terms = 0;
 
+        // Try-catch block to handle user input errors
 
-        if (terms <= 0) {
-            System.out.println("Please Enter a Positive Number.");
+        try {
+            System.out.println("Enter the number of terms: ");
+            terms = scanner.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("Please enter a valid number.");
             return;
         }
 
+        // Input validation
+
+        if (terms <= 0) {
+            System.out.println("Please enter a positive number.");
+            return;
+        }
+
+        // Special case if only one term is requested
 
         if (terms == 1) {
             System.out.println("Fibonacci Sequence: 0");
             return;
         }
 
-        // First and second term
+        // Initialize the first two terms
+
         int a = 0, b = 1;
 
         System.out.println("Fibonacci Sequence: ");
-        System.out.print(a + " " + b);  // print first and sec. term
+        System.out.print(a + " " + b);  // Print the first two terms
 
-        // calc fibonacci and print
+        // Calculate and print the Fibonacci sequence
+
         for (int i = 2; i < terms; i++) {
             int next = a + b;
             System.out.print(" " + next);
@@ -32,6 +46,8 @@ public class FibonacciCalculator {
             b = next;
         }
 
-        System.out.println(); // space
+        // Print a newline after the sequence
+
+        System.out.println();
     }
 }
